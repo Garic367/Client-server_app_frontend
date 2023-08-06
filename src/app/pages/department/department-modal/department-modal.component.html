@@ -1,0 +1,15 @@
+<nz-modal [nzVisible]="isVisible" nzTitle="Edit Department" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkDisabled]="!form.valid">
+  <ng-container *nzModalContent>
+    <form [formGroup]="form">
+      <nz-form-control>
+        <label>Name</label>
+        <input name="name" type="text" nz-input formControlName="name" placeholder="name" [maxLength]="30">
+        <div class="required-field" *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['required']">Name is required</div>
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['minlength']">Name should be at least 2 characters long</div>
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['maxlength']">Name should not exceed 30 characters</div>
+        </div>
+      </nz-form-control>
+    </form>
+  </ng-container>
+</nz-modal>

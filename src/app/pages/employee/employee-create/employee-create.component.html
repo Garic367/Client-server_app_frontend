@@ -1,0 +1,56 @@
+<nz-modal [nzVisible]="isVisibleCreate" nzTitle="Create Department" (nzOnCancel)="handleCreateCancel()" (nzOnOk)="handleCreateOk()" [nzOkDisabled]="!form.valid">
+  <ng-container *nzModalContent>
+    <form [formGroup]="form">
+
+      <nz-form-control class="form-control">
+
+        <label class="label">Name <span class="required-field">*</span></label>
+        <input name="name" type="text" nz-input formControlName="name" placeholder="Name" [maxLength]="30"/>
+        <div class="required-field" *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['required']">Name is required</div>
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['minlength']">Name should be at least 3 characters long</div>
+          <div class="required-field" *ngIf="form.get('name')?.errors?.['maxlength']">Name should not exceed 30 characters</div>
+        </div>
+      </nz-form-control>
+
+      <nz-form-control>
+        <label class="label">Salary <span class="required-field">*</span></label>
+        <input name="salary" type="number" nz-input formControlName="salary" placeholder="Salary" [max]="1000"/>
+        <div class="required-field" *ngIf="form.get('salary')?.invalid && (form.get('salary')?.dirty || form.get('salary')?.touched)">
+          <div class="required-field" *ngIf="form.get('salary')?.errors?.['required']">Salary is required</div>
+          <div class="required-field" *ngIf="form.get('salary')?.errors?.['min']">Salary should be at least 100 </div>
+          <div class="required-field" *ngIf="form.get('salary')?.errors?.['max']">Salary should not exceed 1000</div>
+        </div>
+      </nz-form-control>
+
+      <nz-form-control >
+        <label class="label">Role <span class="required-field">*</span> </label>
+        <nz-select nzPlaceHolder="Select a role" formControlName="role">
+          <nz-option nzLabel="Developer" nzValue= "Developer"></nz-option>
+          <nz-option nzLabel="Admin" nzValue= "Admin"></nz-option>
+          <div class="required-field" *ngIf="form.get('role')?.invalid && (form.get('role')?.dirty || form.get('role')?.touched)">
+            <div class="required-field" *ngIf="form.get('role')?.errors?.['role']">Role is required</div>
+          </div>
+        </nz-select>
+      </nz-form-control>
+
+      <nz-form-control >
+        <label class="label">Department<span class="required-field"> *</span></label>
+         <nz-select  nzPlaceHolder="Select a department" formControlName="department">
+        <nz-option *ngFor="let department of department" nzValue="{{department.id}}"  nzLabel= "{{department.name}}" ></nz-option>
+      </nz-select>
+      </nz-form-control>
+
+      <nz-form-control>
+         <label class="label">In Work</label>
+      <nz-radio-group class="radio" formControlName="onVacation" >
+        <label nz-radio nzValue="True">Yes</label>
+        <label nz-radio nzValue="False">No</label>
+      </nz-radio-group>
+      </nz-form-control>
+
+    </form>
+  </ng-container>
+</nz-modal>
+
+

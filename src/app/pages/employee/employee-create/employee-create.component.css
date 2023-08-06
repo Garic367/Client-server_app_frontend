@@ -1,0 +1,19 @@
+.createForm{
+  width: 30%;
+}
+.radio{
+  margin-left: 20px;
+}
+nz-form-control{
+  margin: 15px 0;
+}
+input{
+  margin: 3px 0;
+}
+nz-select{
+  margin: 3px 0;
+}
+
+.required-field{
+  color:red;
+}

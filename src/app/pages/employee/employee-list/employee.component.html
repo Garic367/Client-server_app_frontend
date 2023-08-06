@@ -1,0 +1,70 @@
+<button class="btnAdd" nz-button nzType="primary" (click)="openCreateModal()">Add employee</button>
+<nz-table
+           [nzData]="employees"
+           [nzFrontPagination]="false"
+           [nzTotal]="totalItems"
+           [nzPageSize]="pageSize"
+           [nzPageIndex]="pageNumber"
+           (nzQueryParams)="onQueryParamsChange($event)"
+>
+
+  <thead>
+
+  <tr>
+   <th  class="table" nzColumnKey="id" [nzSortFn]="true">ID</th>
+    <th class="table" nzCustomFilter >
+      Name
+      <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+        <span nz-icon nzType="search"></span>
+      </nz-filter-trigger>
+    </th>
+    <th class="table">Salary</th>
+    <th class="table">Role</th>
+    <th class="table">Department</th>
+    <th class="table">In Work</th>
+    <th class="table">Options</th>
+
+  </tr>
+  </thead >
+  <tbody >
+  <tr *ngFor="let employee of employees">
+    <td>{{ employee.id }}</td>
+    <td>{{ employee.name }}</td>
+    <td>{{ employee.salary }}</td>
+    <td>{{ employee.role }}</td>
+    <td>{{ employee.department.name}}</td>
+    <td *ngIf="employee.onVacation">
+         Yes
+    </td>
+    <td *ngIf="!employee.onVacation">
+         No
+    </td>
+    <td>
+     <button class="btnEdit"  (click)="showModal(employee)"> <span nz-icon nzType="edit" nzTheme="outline"></span></button>
+      <button class="btnDel" (click)="deleteEmployee(employee.id)"> <span  nz-icon nzType="delete" nzTheme="outline" ></span></button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menu="nzDropdownMenu" >
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="searchByName()" class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<app-employee-modal
+  [isVisible]="isVisible"
+  [selectedEmployee]="selectedEmployee"
+  (closeModal)="handleModalClose($event)"
+></app-employee-modal>
+<add-employee
+  [isVisibleCreate]="showCreateModal"
+  (closeCreateModal)="closeCreateModal()"
+  (createEmployee)="createEmployee($event)"
+>
+</add-employee>

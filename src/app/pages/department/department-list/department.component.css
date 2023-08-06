@@ -1,0 +1,32 @@
+.btnAdd{
+  margin-bottom: 1rem;
+  margin-left: auto;
+  display: flex;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #1890ff;
+  color:#1890ff;
+}
+.btnEdit{
+  color:darkblue;
+  cursor:pointer;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid darkblue;
+
+}
+.btnDel{
+  color:red;
+  border: 1px solid red;
+  margin-left: 5%;
+  cursor:pointer;
+  border-radius: 5px;
+  background-color: white;
+
+}
+.table{
+  text-align: center;
+}
+td{
+  text-align: center;
+}

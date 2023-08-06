@@ -1,0 +1,6 @@
+input{
+  margin: 3px 0;
+}
+.required-field{
+  color:red;
+}
